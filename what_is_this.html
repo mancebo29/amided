@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Im I dead? - Find out if you are dead</title>
+    <title>Im I dead? - What is this?</title>
     <meta name="description" content="A useful tool to tell you if you whether or not you are dead. A question every person wonders at some point in their life."/>
     <meta name="robots" content="index,follow"/>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145817199-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -24,24 +23,40 @@
 </head>
 <body>
 <div class="content">
-    <h1 class="title">NO</h1>
-    <p class="subtitle">You are still alive</p>
-    <a class="what-is-this" href="what_is_this.html">what's this?</a>
+    <h1 class="title"><a class="link" href="/">Am I dead?</a></h1>
+    <p>
+        That is the question everyone wonders at some point in their life, are you dead or alive?. Here we leave the philosophy behind it aside
+        to answer that question literally:
+    </p>
+    <p>
+        No, yo are not dead.
+    </p>
+    <p>
+        Yes, this is just a useless site to tell you whether or not you are dead.
+    </p>
+    <p>
+        If you are wondering what kind of technology we use to determine that, it's actually a very advanced algorithm
+        developed by norwegian scientists, explained in the flowchart below:
+    </p>
+    <img class="flowchart" alt="Very complicated flowchart" src="flowchart.png"/>
+    <p>
+        This was actually inspired in <span><a href="http://hasthelargehadroncolliderdestroyedtheworldyet.com">hasthelargehadroncolliderdestroyedtheworldyet.com</a></span>
+    </p>
 </div>
 
 <style>
     html, body {
-        height: 98%;
         background-color: black;
     }
     .content {
+        margin: 3em auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         height: 100%;
         min-height: 100%;
-        width: 100%;
+        width: 50%;
     }
     .title {
         color: white;
@@ -50,21 +65,20 @@
         line-height: 0.2em;
         font-family: Arial,serif;
     }
-    .subtitle {
+    p {
         color: white;
-        font-size: 2em;
+        font-size: 1.2em;
         text-align: center;
         font-family: Courier,serif;
     }
 
-    .what-is-this {
-        color: white;
-        font-size: 0.8em;
-        text-align: center;
-        font-family: Courier,serif;
-        position: absolute;
-        bottom: 1em;
+    .link {
         text-decoration: none;
+        color: inherit;
+    }
+
+    .flowchart {
+        margin: 1em 0;
     }
 </style>
 </body>
