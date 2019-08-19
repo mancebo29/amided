@@ -46,7 +46,7 @@
     </p>
     <img class="flowchart" alt="Very complicated flowchart" src="flowchart.png"/>
     <p>
-        This was actually inspired in <span><a href="http://hasthelargehadroncolliderdestroyedtheworldyet.com">hasthelargehadroncolliderdestroyedtheworldyet.com</a></span>
+        This was actually inspired in <a href="http://hasthelargehadroncolliderdestroyedtheworldyet.com">hasthelargehadroncolliderdestroyedtheworldyet.com</a>
     </p>
     <div class="donation-box">
         <form action="https://www.paypal.com/cgi-bin/webscr" onsubmit="donate()" method="post" target="_top">
@@ -91,12 +91,36 @@
         color: inherit;
     }
 
+    a {
+        word-break: break-word;
+    }
+
     .flowchart {
         margin: 1em 0;
     }
 
     .donation-box {
         margin: 2em 0 1em 0;
+    }
+
+    @media (max-width: 991px) {
+
+        .content {
+            width: 80%;
+        }
+
+        .title {
+            font-size: 7em;
+        }
+
+        p {
+            font-size: 3em;
+        }
+
+        .flowchart {
+            width: 80%;
+        }
+
     }
 </style>
 </body>
