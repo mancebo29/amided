@@ -12,6 +12,12 @@
         gtag('js', new Date());
 
         gtag('config', 'UA-145817199-1');
+
+        function donate() {
+            gtag('event', 'clickedDonate', {
+                'event_category': 'Donation',
+            });
+        }
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
@@ -43,7 +49,7 @@
         This was actually inspired in <span><a href="http://hasthelargehadroncolliderdestroyedtheworldyet.com">hasthelargehadroncolliderdestroyedtheworldyet.com</a></span>
     </p>
     <div class="donation-box">
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <form action="https://www.paypal.com/cgi-bin/webscr" onsubmit="donate()" method="post" target="_top">
             <input type="hidden" name="cmd" value="_s-xclick" />
             <input type="hidden" name="hosted_button_id" value="ZURJJM7GYAVWJ" />
             <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
