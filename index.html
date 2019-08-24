@@ -22,9 +22,51 @@
         });
     </script>
     <script>
-        window.addEventListener('scroll', (e) => {
+        let last_known_scroll_position = 0;
+        let ticking = false;
 
-        })
+        function debounce(func, wait, immediate) {
+            let timeout;
+            return function() {
+                const context = this, args = arguments;
+                const later = function() {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                const callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
+            };
+        }
+
+        function smoothScrolling(scroll_pos) {
+            const containers = Array.from(document.getElementsByClassName('content'));
+            const viewportHeight = window.innerHeight;
+            containers.forEach(container => {
+                const { y, bottom } = container.getBoundingClientRect();
+                if (Math.abs(y) <= 124) {
+                    container.scrollIntoView({ behavior: 'smooth', })
+                } else if (Math.abs(viewportHeight - bottom) <= 124) {
+                    container.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                }
+            })
+        }
+
+        const handleScroll = debounce(smoothScrolling, 100);
+
+        window.addEventListener('scroll', function(e) {
+            last_known_scroll_position = window.scrollY;
+
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    handleScroll(last_known_scroll_position);
+                    ticking = false;
+                });
+
+                ticking = true;
+            }
+        });
     </script>
 </head>
 <!--
@@ -171,7 +213,6 @@
 <style>
     html, body {
         background-color: black;
-        overflow: hidden;
         scroll-behavior: smooth;
     }
 
@@ -180,9 +221,8 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        min-height: 100vh;
         width: 100%;
-        overflow-y: scroll;
         padding-right: 1em;
     }
 
@@ -197,20 +237,12 @@
         width: 50%;
     }
 
-    #whatIsThis {
-        padding: 6em 0 6em 0;
-    }
-
     .title {
         color: white;
         font-size: 5em;
         text-align: center;
         line-height: 0.2em;
         font-family: Arial,serif;
-    }
-
-    #whatIsThis .title {
-        margin-top: 7em;
     }
 
     .subtitle {
@@ -252,7 +284,7 @@
     }
 
     .donation-box {
-        margin: 2em 0 14em 0;
+        margin: 2em 0 6em 0;
     }
 
     p {
