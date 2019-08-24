@@ -21,6 +21,11 @@
             enable_page_level_ads: true
         });
     </script>
+    <script>
+        window.addEventListener('scroll', (e) => {
+
+        })
+    </script>
 </head>
 <!--
           _..--""---.
@@ -62,26 +67,140 @@
    `'''`----`\\\\ .....--'''
 -->
 <body>
-<div class="content">
+<div id="index" class="content">
     <h1 class="title">NO</h1>
     <p class="subtitle">You are still alive</p>
-    <a class="what-is-this" href="What_is_this.html">what's this?</a>
+    <a class="what-is-this" href="#whatIsThis">what's this?</a>
+</div>
+<div id="whatIsThis" class="content">
+    <div class="container">
+        <h1 class="title"><a class="link" href="#index">Am I dead?</a></h1>
+        <p>
+            That is the question everyone wonders at some point in their life, are you dead or alive? Here we leave the philosophy behind it aside
+            to answer that question literally:
+        </p>
+        <p>
+            No, you are not dead.
+        </p>
+        <p>
+            Yes, this is just a useless site to tell you whether or not you are dead.
+        </p>
+        <p>
+            Did you know that most dead people don't actually know they're dead? Roughly 100% of dead people have trouble
+            answering that simple question: <strong>Am I dead?</strong>. Mostly because their brain doesn't work anymore.
+        </p>
+        <p>
+            If you are wondering what kind of technology we use to determine if you are dead, it's actually a very advanced
+            algorithm developed by norwegian scientists, explained in the flowchart below:
+        </p>
+        <img class="flowchart" alt="Am I Dead? Algorithm flowchart" src="am-i-dead.png"/>
+        <p>
+            This was actually inspired in <a href="http://hasthelargehadroncolliderdestroyedtheworldyet.com">hasthelargehadroncolliderdestroyedtheworldyet.com</a>
+        </p>
+        <p>
+            If you have more existential questions about life, death, this site, the universe, the afterlife and such, you
+            may find the answers you are looking for in the <a class="underlined-link" href="#faqs">FAQs</a> page.
+        </p>
+        <div id="donationBox" class="donation-box">
+            <form action="https://www.paypal.com/cgi-bin/webscr" onsubmit="donate()" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick" />
+                <input type="hidden" name="hosted_button_id" value="ZURJJM7GYAVWJ" />
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                <img alt="" border="0" src="https://www.paypal.com/en_DO/i/scr/pixel.gif" width="1" height="1" />
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="faqs" class="content">
+    <div class="faqs-container">
+        <h1 class="title">FAQs</h1>
+        <div class="faq-container">
+            <h2 class=faq-question>
+                <a class="am-i-dead-link" href="#index">Am I dead?</a>
+            </h2>
+            <p class="faq-answer">No, you are still alive.</p>
+        </div>
+        <div class="faq-container">
+            <h2 class=faq-question>
+                Is the purpose of this page just to tell me whether I'm dead?
+            </h2>
+            <p class="faq-answer">Yes...</p>
+        </div>
+        <div class="faq-container">
+            <h2 class=faq-question>
+                Is someone paying for domain and hosting just for this?
+            </h2>
+            <p class="faq-answer">Yes... Though asking it that way kinda makes me feel bad about it.</p>
+        </div>
+        <div class="faq-container">
+            <h2 class=faq-question>
+                What is the purpose of this?
+            </h2>
+            <p class="faq-answer">Giving any person with existential doubts about their life the answers they desperately search for.</p>
+        </div>
+        <div class="faq-container">
+            <h2 class=faq-question>
+                If I ever die, would I be able to access this
+                site from heaven / hell / purgatory / afterlife / whatever-I-believe-in?
+            </h2>
+            <p class="faq-answer">Yes, with 100% refund guarantee!</p>
+        </div>
+        <div class="faq-container">
+            <h2 class=faq-question>
+                But... I Didn't... pay any money... how can I get refunded?
+            </h2>
+            <p class="faq-answer">Uh... You should <a class="am-i-dead-link" href="#donationBox">donate</a>
+                so you can get a refund if you ever need to.</p>
+        </div>
+        <div class="faq-container">
+            <h2 class=faq-question>
+                When will I die? Will I die sometime soon?
+            </h2>
+            <p class="faq-answer">You will die in exactly 42 time units. It's up to you to determine what the units are.</p>
+        </div>
+        <div class="faq-container">
+            <h2 class=faq-question>
+                My question is not here
+            </h2>
+            <p class="faq-answer">That is not a question.</p>
+        </div>
+    </div>
 </div>
 
 <style>
     html, body {
-        height: 98%;
         background-color: black;
+        overflow: hidden;
+        scroll-behavior: smooth;
     }
+
     .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
+        overflow-y: scroll;
+        padding-right: 1em;
+    }
+
+    .container {
+        margin: 3em auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         height: 100%;
         min-height: 100%;
-        width: 100%;
+        width: 50%;
     }
+
+    #whatIsThis {
+        padding: 6em 0 6em 0;
+    }
+
     .title {
         color: white;
         font-size: 5em;
@@ -89,6 +208,11 @@
         line-height: 0.2em;
         font-family: Arial,serif;
     }
+
+    #whatIsThis .title {
+        margin-top: 7em;
+    }
+
     .subtitle {
         color: white;
         font-size: 2em;
@@ -104,6 +228,61 @@
         position: absolute;
         bottom: 1em;
         text-decoration: none;
+    }
+
+    #faqs {
+        justify-content: left;
+    }
+
+    .faq-container {
+        width: 70%;
+        margin: 3em auto;
+    }
+
+    .underlined-link {
+        color: inherit;
+    }
+
+    a {
+        word-break: break-word;
+    }
+
+    .flowchart {
+        margin: 1em 0;
+    }
+
+    .donation-box {
+        margin: 2em 0 14em 0;
+    }
+
+    p {
+        color: white;
+        font-size: 1.2em;
+        text-align: center;
+        font-family: Courier,serif;
+    }
+
+    .link {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .faq-question {
+        color: white;
+        font-size: 2em;
+        text-align: left;
+        font-family: Courier,serif;
+    }
+
+    .faq-answer {
+        color: white;
+        font-size: 1.2em;
+        text-align: justify;
+        font-family: Arial,serif;
+    }
+
+    .am-i-dead-link {
+        color: white;
     }
 
     @media (max-width: 991px) {
@@ -123,6 +302,22 @@
 
         .what-is-this {
             font-size: 1.3em;
+        }
+
+        p {
+            font-size: 3em;
+        }
+
+        .flowchart {
+            width: 80%;
+        }
+
+        .faq-question {
+            font-size: 3em;
+        }
+
+        .faq-answer {
+            font-size: 1.8em;
         }
 
     }
