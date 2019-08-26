@@ -29,6 +29,12 @@
         };
 
         window.addEventListener('scroll', handleFirstScroll);
+
+        window.onload = () => {
+            if (window.location.hash) {
+                document.getElementById(window.location.hash.substr(1)).scrollIntoView();
+            }
+        }
     </script>
 </head>
 <!--
@@ -103,7 +109,7 @@
         </p>
         <p>
             If you have more existential questions about life, death, this site, the universe, the afterlife and such, you
-            may find the answers you are looking for in the <a class="underlined-link" href="/FAQs.html">FAQs</a> page.
+            may find the answers you are looking for in the <a class="underlined-link" href="FAQs.html">FAQs</a> page.
         </p>
         <div id="donationBox" class="donation-box">
             <form action="https://www.paypal.com/cgi-bin/webscr" onsubmit="donate()" method="post" target="_top">
@@ -135,7 +141,7 @@
     }
 
     .container {
-        margin: 3em auto;
+        margin: 2em auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -191,11 +197,6 @@
         font-size: 1.2em;
         text-align: center;
         font-family: Courier,serif;
-    }
-
-    .link {
-        text-decoration: none;
-        color: inherit;
     }
 
     @media (max-width: 991px) {
