@@ -30,11 +30,23 @@
 
         window.addEventListener('scroll', handleFirstScroll);
 
+        const scrollTo = (hash) => {
+            document.getElementById(hash.substr(1)).scrollIntoView();
+        };
+
         window.onload = () => {
             if (window.location.hash) {
-                document.getElementById(window.location.hash.substr(1)).scrollIntoView();
+                scrollTo(window.location.hash);
             }
-        }
+        };
+
+        window.addEventListener('hashchange', () => {
+            const { hash } = window.location;
+            scrollTo(hash);
+            window.location.hash;
+            history.pushState('', document.title, window.location.pathname);
+        })
+
     </script>
 </head>
 <!--
