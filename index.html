@@ -22,51 +22,13 @@
         });
     </script>
     <script>
-        let last_known_scroll_position = 0;
-        let ticking = false;
+        const handleFirstScroll = () => {
+            console.log('SCROLLED');
+            document.body.style.overflowY = 'initial';
+            window.removeEventListener('scroll', handleFirstScroll);
+        };
 
-        function debounce(func, wait, immediate) {
-            let timeout;
-            return function() {
-                const context = this, args = arguments;
-                const later = function() {
-                    timeout = null;
-                    if (!immediate) func.apply(context, args);
-                };
-                const callNow = immediate && !timeout;
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-                if (callNow) func.apply(context, args);
-            };
-        }
-
-        function smoothScrolling(scroll_pos) {
-            const containers = Array.from(document.getElementsByClassName('content'));
-            const viewportHeight = window.innerHeight;
-            containers.forEach(container => {
-                const { y, bottom } = container.getBoundingClientRect();
-                if (Math.abs(y) <= 124) {
-                    container.scrollIntoView({ behavior: 'smooth', })
-                } else if (Math.abs(viewportHeight - bottom) <= 124) {
-                    container.scrollIntoView({ behavior: 'smooth', block: 'end' });
-                }
-            })
-        }
-
-        const handleScroll = debounce(smoothScrolling, 100);
-
-        window.addEventListener('scroll', function(e) {
-            last_known_scroll_position = window.scrollY;
-
-            if (!ticking) {
-                window.requestAnimationFrame(function() {
-                    handleScroll(last_known_scroll_position);
-                    ticking = false;
-                });
-
-                ticking = true;
-            }
-        });
+        window.addEventListener('scroll', handleFirstScroll);
     </script>
 </head>
 <!--
@@ -116,7 +78,7 @@
 </div>
 <div id="whatIsThis" class="content">
     <div class="container">
-        <h1 class="title"><a class="link" href="#index">Am I dead?</a></h1>
+        <h1 class="title">Am I dead?</h1>
         <p>
             That is the question everyone wonders at some point in their life, are you dead or alive? Here we leave the philosophy behind it aside
             to answer that question literally:
@@ -141,7 +103,7 @@
         </p>
         <p>
             If you have more existential questions about life, death, this site, the universe, the afterlife and such, you
-            may find the answers you are looking for in the <a class="underlined-link" href="#faqs">FAQs</a> page.
+            may find the answers you are looking for in the <a class="underlined-link" href="/FAQs.html">FAQs</a> page.
         </p>
         <div id="donationBox" class="donation-box">
             <form action="https://www.paypal.com/cgi-bin/webscr" onsubmit="donate()" method="post" target="_top">
@@ -153,67 +115,14 @@
         </div>
     </div>
 </div>
-
-<div id="faqs" class="content">
-    <div class="faqs-container">
-        <h1 class="title">FAQs</h1>
-        <div class="faq-container">
-            <h2 class=faq-question>
-                <a class="am-i-dead-link" href="#index">Am I dead?</a>
-            </h2>
-            <p class="faq-answer">No, you are still alive.</p>
-        </div>
-        <div class="faq-container">
-            <h2 class=faq-question>
-                Is the purpose of this page just to tell me whether I'm dead?
-            </h2>
-            <p class="faq-answer">Yes...</p>
-        </div>
-        <div class="faq-container">
-            <h2 class=faq-question>
-                Is someone paying for domain and hosting just for this?
-            </h2>
-            <p class="faq-answer">Yes... Though asking it that way kinda makes me feel bad about it.</p>
-        </div>
-        <div class="faq-container">
-            <h2 class=faq-question>
-                What is the purpose of this?
-            </h2>
-            <p class="faq-answer">Giving any person with existential doubts about their life the answers they desperately search for.</p>
-        </div>
-        <div class="faq-container">
-            <h2 class=faq-question>
-                If I ever die, would I be able to access this
-                site from heaven / hell / purgatory / afterlife / whatever-I-believe-in?
-            </h2>
-            <p class="faq-answer">Yes, with 100% refund guarantee!</p>
-        </div>
-        <div class="faq-container">
-            <h2 class=faq-question>
-                But... I Didn't... pay any money... how can I get refunded?
-            </h2>
-            <p class="faq-answer">Uh... You should <a class="am-i-dead-link" href="#donationBox">donate</a>
-                so you can get a refund if you ever need to.</p>
-        </div>
-        <div class="faq-container">
-            <h2 class=faq-question>
-                When will I die? Will I die sometime soon?
-            </h2>
-            <p class="faq-answer">You will die in exactly 42 time units. It's up to you to determine what the units are.</p>
-        </div>
-        <div class="faq-container">
-            <h2 class=faq-question>
-                My question is not here
-            </h2>
-            <p class="faq-answer">That is not a question.</p>
-        </div>
-    </div>
-</div>
-
 <style>
     html, body {
         background-color: black;
         scroll-behavior: smooth;
+    }
+
+    body {
+        overflow-y: hidden;
     }
 
     .content {
@@ -223,7 +132,6 @@
         align-items: center;
         min-height: 100vh;
         width: 100%;
-        padding-right: 1em;
     }
 
     .container {
@@ -262,15 +170,6 @@
         text-decoration: none;
     }
 
-    #faqs {
-        justify-content: left;
-    }
-
-    .faq-container {
-        width: 70%;
-        margin: 3em auto;
-    }
-
     .underlined-link {
         color: inherit;
     }
@@ -284,7 +183,7 @@
     }
 
     .donation-box {
-        margin: 2em 0 6em 0;
+        margin: 2em 0 2em 0;
     }
 
     p {
@@ -297,24 +196,6 @@
     .link {
         text-decoration: none;
         color: inherit;
-    }
-
-    .faq-question {
-        color: white;
-        font-size: 2em;
-        text-align: left;
-        font-family: Courier,serif;
-    }
-
-    .faq-answer {
-        color: white;
-        font-size: 1.2em;
-        text-align: justify;
-        font-family: Arial,serif;
-    }
-
-    .am-i-dead-link {
-        color: white;
     }
 
     @media (max-width: 991px) {
@@ -344,15 +225,71 @@
             width: 80%;
         }
 
-        .faq-question {
-            font-size: 3em;
-        }
-
-        .faq-answer {
-            font-size: 1.8em;
-        }
-
     }
 </style>
 </body>
+<!--
+                                                          .,z$""')$$$$$$$$C`^#`-..
+                                                       ,zF'        `""#*"'       "*o.
+                                                    ,zXe>        u:..        ..      "c
+                                                  ,' zP'    ,:`"          .            "N.
+                                                ,d",d$   ,'"   ,uB" .,uee..,?R.  ,  .    ^$.
+                                              ,@P d$"     .:$$$$$$$$$$$$$@$CJN.,"    `     #b
+                                             z$" d$P    :SM$$$$$$$$$$$$$$$$$$$Nf.           ^$.
+                                            J$" J$P  , ,@$$$$$$$$$$$$$$$$$$$$$$$$$k.         "$r
+                                           z$   $$.   ,$$$$$$$$$$$$$$$$$$$$$$$$$$f'   .    .   $b
+                                          ,$"  $$u,-.x'^""$$$$$$$$$$$$$$$$$$$$$$$$$.        `.  $k
+                                          $"  :$$$$> 8.   `#$$$$$$$$$$$$$$$$$$$$$"\  d  .    F   $.
+                                         $P  .$$$$$N `$b.  $$$$$$$$$$$$$$$$$$$$$k.$  $"  :   '   `$
+                                        <$'  4$$k $$c `*$.,Q$$$$$$$$$$$$$$$$$$$$$$$ ..            $L
+                                        $P   4$$$$$F:   `"$$$$$$$$$$$$$$$$$$$$$$'`$"     .   ,    `$
+                                       ,$'  ,$$$$$d$$    '##$$c3$$$$$$$$$$$$$$$$. '      :   L.    $.
+                                       J$  u$$$$$$$$$.,oed$*$$$$N "#$$$$$$$$$$***$@$N. , $  ,B$$N.,9L
+                                       $F,$$$$$$$$$$,@*"'  `J$$$$$#h$$$$$$P"`     `"*$$. $4W$' "$$uJF
+                                       4$$$$$$$$$$$$F'      $*'`$$RR@$$$$$R        ,' "$d$4"    '$$$R
+                                      ,$$$$$$$$$$$$$F     ,'    @$.3$$$$ R>            `$F$  dN.4$$$$.
+                                     :$$$$$$$$$$$$*$"          J$'$$$$$& $.             $'   $$$$$$$$$o
+                                      ^$$$$$$$$$$B@$$          $P $$$"?N/$k             $r   $$P"*$$$$'
+                                        $$i  .$$$$"$'         $$ ~R$P '$k^$$,'          $   "'  ,d$$'
+                                        $$$$ J$$$$ `,'    .,z$P'd.$P   #$. #$$u.       .$  eu. ,d$$$
+                                        $^$$$$$$$$. `"=+=N#'.,d$M$$'   `$$@s.#$$$u.   ,$C  $$$@$$$"$
+                                           `*$$$$$$bx..        ,M$"     `*$$$b/""$R"*"'d$ ,$$$$P"
+                                              "$$k3$9$$B.e.  ,ud$F       `3$$$$b.      ,$,@R$*'
+                                                *$$$$$$$b$$@$$$$$L   ,.  ,J$$.'**$$k$NX$"M"'
+                                                  "$#"  `" <$$$$$$c,z$N.,o$$$$   ,NW$*"'
+                                                   ',    `$$$$$$$$$d$$$$$$$$$f ,$e*'
+                                                   d.     `^$$$$$$$$$$$$$$$$$.u '"
+                                                   $\   .,  `"#$$$*$$$$$$$$$$$$ '
+                                                   $ `  k.`.     ``"#`"""'      ,' ,'
+                                                   $>,  `b.,ce(b:o uz CCLd$4$*F?\,o
+                                                   $&    $$k'*"$$$$$$#$$$$$$$$$$ d'
+                                                   $$.,$$$$$$$$,e,$#$.*$`""""'e4 $
+                                                   `$$$$  ^$$\$"$$$$$$$$$$$$$$$.eL
+                                                    $$$"  $$$$$$$e$.$.$$.$e$d$$$$k
+                                                    R`$$  '$$$$$$$$$$$$$$$$$$$$$$P
+                                                    `  $Nc'"$$N3$$$$$$$$$$$$$$$$$'
+                                                        *$  9$.`@$$$$$$$$$$R$$$#'
+                                                         `$.  `"*$$$$$$$$$$P'' #
+                                                           "$u.    `""""''   ,'
+                                                             `"$Nu..  .,z<p"'
+                                                                 `"####""'
+
+
+
+        ▄███▄      ▄    ▄▄▄▄▄ ████▄ ▀▄    ▄     ▀▄    ▄ ████▄   ▄   █▄▄▄▄     █    ▄█ ▄████  ▄███▄       █▀▄▀█ ████▄ █▄▄▄▄    ▄▄▄▄▀ ██   █
+        █▀   ▀      █ ▄▀  █   █   █   █  █        █  █  █   █    █  █  ▄▀     █    ██ █▀   ▀ █▀   ▀      █ █ █ █   █ █  ▄▀ ▀▀▀ █    █ █  █
+        ██▄▄    ██   █    █   █   █    ▀█          ▀█   █   █ █   █ █▀▀▌      █    ██ █▀▀    ██▄▄        █ ▄ █ █   █ █▀▀▌      █    █▄▄█ █
+        █▄   ▄▀ █ █  █ ▄ █    ▀████    █           █    ▀████ █   █ █  █      ███▄ ▐█ █      █▄   ▄▀     █   █ ▀████ █  █     █     █  █ ███▄
+        ▀███▀   █  █ █  ▀            ▄▀          ▄▀           █▄ ▄█   █           ▀ ▐  █     ▀███▀          █          █     ▀         █     ▀
+                █   ██                                         ▀▀▀   ▀                  ▀                  ▀          ▀               █
+                                                                                                                                     ▀
+
+ ▄█▄    ████▄    ▄      ▄▄▄▄▄   ▄█ ██▄   ▄███▄   █▄▄▄▄     █▀▄▀█ ██   █  █▀ ▄█    ▄     ▄▀      ██       ██▄   ████▄    ▄   ██     ▄▄▄▄▀ ▄█ ████▄    ▄
+ █▀ ▀▄  █   █     █    █     ▀▄ ██ █  █  █▀   ▀  █  ▄▀     █ █ █ █ █  █▄█   ██     █  ▄▀        █ █      █  █  █   █     █  █ █ ▀▀▀ █    ██ █   █     █
+ █   ▀  █   █ ██   █ ▄  ▀▀▀▀▄   ██ █   █ ██▄▄    █▀▀▌      █ ▄ █ █▄▄█ █▀▄   ██ ██   █ █ ▀▄      █▄▄█     █   █ █   █ ██   █ █▄▄█    █    ██ █   █ ██   █
+ █▄  ▄▀ ▀████ █ █  █  ▀▄▄▄▄▀    ▐█ █  █  █▄   ▄▀ █  █      █   █ █  █ █  █  ▐█ █ █  █ █   █     █  █     █  █  ▀████ █ █  █ █  █   █     ▐█ ▀████ █ █  █
+ ▀███▀        █  █ █             ▐ ███▀  ▀███▀     █          █     █   █    ▐ █  █ █  ███         █     ███▀        █  █ █    █  ▀       ▐       █  █ █
+              █   ██                              ▀          ▀     █   ▀       █   ██             █                  █   ██   █                   █   ██
+                                                                  ▀                              ▀                           ▀
+-->
 </html>
