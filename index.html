@@ -44,7 +44,7 @@
             const { hash } = window.location;
             if (hash) {
                 scrollTo(hash);
-                history.pushState('', document.title, window.location.pathname);
+                history.replaceState('', document.title, window.location.pathname);
             }
         })
 
