@@ -23,7 +23,6 @@
     </script>
     <script>
         const handleFirstScroll = () => {
-            console.log('SCROLLED');
             document.body.style.overflowY = 'initial';
             window.removeEventListener('scroll', handleFirstScroll);
         };
@@ -38,15 +37,17 @@
             if (window.location.hash) {
                 scrollTo(window.location.hash);
             }
+
+            Array.from(document.getElementsByClassName('what-is-this')).forEach((anchor) => {
+                anchor.addEventListener('click', (e) => {
+                    if (anchor.hash) {
+                        e.preventDefault();
+                        scrollTo(anchor.hash);
+                    }
+                });
+            })
         };
 
-        window.addEventListener('hashchange', () => {
-            const { hash } = window.location;
-            if (hash) {
-                scrollTo(hash);
-                history.replaceState('', document.title, window.location.pathname);
-            }
-        })
 
     </script>
 </head>
