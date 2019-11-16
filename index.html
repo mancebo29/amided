@@ -7,6 +7,7 @@
     <meta content="index,follow" name="robots"/>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145817199-1"></script>
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5dd001fd9e304f00123cfa9a&product=inline-share-buttons" async="async"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -123,10 +124,14 @@
             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" onsubmit="donate()" target="_top">
                 <input name="cmd" type="hidden" value="_s-xclick" />
                 <input name="hosted_button_id" type="hidden" value="ZURJJM7GYAVWJ" />
-                <input alt="Donate with PayPal button" border="0" name="submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" title="PayPal - The safer, easier way to pay online!" type="image" />
+                <input alt="Donate with PayPal button" class="donate-button" border="0" name="submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" title="PayPal - The safer, easier way to pay online!" type="image" />
                 <img alt="" border="0" height="1" src="https://www.paypal.com/en_DO/i/scr/pixel.gif" width="1" />
             </form>
         </div>
+        <p>
+            If this site at least made you laugh, consider making a small donation. Or share it with people who also have existential doubts:
+        </p>
+        <div class="sharethis-inline-share-buttons"></div>
     </div>
 </div>
 </div>
@@ -206,6 +211,10 @@
         font-size: 1.2em;
         text-align: center;
         font-family: Courier,serif;
+    }
+
+    .donate-button {
+        width: 22em;
     }
 
     @media (max-width: 991px) {
