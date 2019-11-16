@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Am I dead? - Find out if you are dead</title>
-    <meta name="description" content="A useful tool to tell you if you whether or not you are dead. A question every person wonders at some point in their life."/>
-    <meta name="robots" content="index,follow"/>
+    <meta content="A useful tool to tell you if you whether or not you are dead. A question every person wonders at some point in their life." name="description"/>
+    <meta content="index,follow" name="robots"/>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145817199-1"></script>
     <script>
@@ -14,14 +14,7 @@
 
         gtag('config', 'UA-145817199-1');
     </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-3854161765927711",
-            enable_page_level_ads: true
-        });
-    </script>
-    <script>
+    <script async>
         const handleFirstScroll = () => {
             document.body.style.overflowY = 'initial';
             window.removeEventListener('scroll', handleFirstScroll);
@@ -91,12 +84,13 @@
    `'''`----`\\\\ .....--'''
 -->
 <body>
-<div id="index" class="content">
+<div>
+<div class="content" id="index">
     <h1 class="title">NO</h1>
     <p class="subtitle">You are still alive</p>
     <a class="what-is-this" href="#whatIsThis">what's this?</a>
 </div>
-<div id="whatIsThis" class="content">
+<div class="content" id="whatIsThis">
     <div class="container">
         <h1 class="title">Am I dead?</h1>
         <p>
@@ -117,7 +111,7 @@
             If you are wondering what kind of technology we use to determine if you are dead, it's actually a very advanced
             algorithm developed by norwegian scientists, explained in the flowchart below:
         </p>
-        <img class="flowchart" alt="Am I Dead? Algorithm flowchart" src="am-i-dead.png"/>
+        <img alt="Am I Dead? Algorithm flowchart" class="flowchart" src="am-i-dead.png"/>
         <p>
             This was actually inspired in <a href="http://hasthelargehadroncolliderdestroyedtheworldyet.com">hasthelargehadroncolliderdestroyedtheworldyet.com</a>
         </p>
@@ -125,15 +119,16 @@
             If you have more existential questions about life, death, this site, the universe, the afterlife and such, you
             may find the answers you are looking for in the <a class="underlined-link" href="FAQs.html">FAQs</a> page.
         </p>
-        <div id="donationBox" class="donation-box">
-            <form action="https://www.paypal.com/cgi-bin/webscr" onsubmit="donate()" method="post" target="_top">
-                <input type="hidden" name="cmd" value="_s-xclick" />
-                <input type="hidden" name="hosted_button_id" value="ZURJJM7GYAVWJ" />
-                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-                <img alt="" border="0" src="https://www.paypal.com/en_DO/i/scr/pixel.gif" width="1" height="1" />
+        <div class="donation-box" id="donationBox">
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" onsubmit="donate()" target="_top">
+                <input name="cmd" type="hidden" value="_s-xclick" />
+                <input name="hosted_button_id" type="hidden" value="ZURJJM7GYAVWJ" />
+                <input alt="Donate with PayPal button" border="0" name="submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" title="PayPal - The safer, easier way to pay online!" type="image" />
+                <img alt="" border="0" height="1" src="https://www.paypal.com/en_DO/i/scr/pixel.gif" width="1" />
             </form>
         </div>
     </div>
+</div>
 </div>
 <style>
     html, body {
