@@ -86,8 +86,10 @@
 <body>
 <div>
 <div class="content" id="index">
-    <h1 class="title">NO</h1>
-    <p class="subtitle">You are still alive</p>
+    <div class="main-answer">
+        <h1 class="title">NO</h1>
+        <p class="subtitle">You are still alive</p>
+    </div>
     <a class="what-is-this" href="#whatIsThis">what's this?</a>
 </div>
 <div class="content" id="whatIsThis">
@@ -176,6 +178,14 @@
         font-size: 2em;
         text-align: center;
         font-family: Courier,serif;
+    }
+
+    .main-answer {
+        width: 100%;
+        height: 90vh;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
     }
 
     .what-is-this {
